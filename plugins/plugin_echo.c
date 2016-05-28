@@ -2,6 +2,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include "plugin.h"
+#include <stdio.h>
 
 int plugin_echo(int argc, char ** argv)
 {

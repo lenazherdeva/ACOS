@@ -48,10 +48,11 @@ int calculate_function(const Plugin &plugin, const std::vector<std::string> &wor
 {
     char ** argv = (char **)malloc((words.size() + 1) * sizeof(char *));
     for (size_t i = 0; i < words.size(); ++i) {
-        argv[i] = (char *)malloc(sizeof(char *) * (words[i].size() + 1));
+        argv[i] = (char *)malloc((words[i].size() + 1) * sizeof(char));
         memcpy(argv[i], words[i].c_str(), words[i].size());
-        argv[words[i].size()] = 0;
+        argv[i][words[i].size()] = 0;
     }
+    argv[words.size()] = (char *)0;
     int code = plugin.function(words.size(), argv);
     for (size_t i = 0; i < words.size(); ++i) {
         free(argv[i]);
